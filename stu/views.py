@@ -2,8 +2,10 @@ from django.http import HttpResponse
 from django.shortcuts import render
 import os
 
-
 # Create your views here.
+from .models import *
+
+
 def index_view(request):
     if request.method == 'GET':
         return render(request, 'index.html')
@@ -23,3 +25,22 @@ def index_view(request):
         return HttpResponse('上传成功')
     else:
         return HttpResponse('当前访问量过大请稍后再试')
+
+
+# django文件上传
+def upload_view(request):
+    # 接收请求参数
+    uname = request.POST.get('uname', '')
+    photo = request.FILES.get('photo', '')
+    # 入库操作
+    Student.objects.create(sname=uname, photo=photo)
+
+    return HttpResponse('上传成功！')
+
+
+# 显示图片
+def showall_view(request):
+    # 读取所有学生信息
+    stus = Student.objects.all()
+
+    return render(request, 'show.html', {'stus': stus})
