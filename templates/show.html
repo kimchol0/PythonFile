@@ -14,10 +14,10 @@
     </tr>
     {% for stu in stus %}
         <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ stu.sname }}</td>
-        <td><img style="width: 200px;" src="{{ MEDIA_URL }}{{ stu.photo }}"></td>
-        <td>下载</td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ stu.sname }}</td>
+            <td><img style="width: 200px;" src="{{ MEDIA_URL }}{{ stu.photo }}"></td>
+            <td><a href="/student/download/?photo={{ stu.photo }}">下载</a></td>
         </tr>
     {% endfor %}
 </table>

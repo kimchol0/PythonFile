@@ -44,3 +44,18 @@ def showall_view(request):
     stus = Student.objects.all()
 
     return render(request, 'show.html', {'stus': stus})
+
+
+def download_view(request):
+    # 获取请求参数（图片存储位置）
+    photo = request.GET.get('photo', '').replace('/', '\\')
+    # 获取图片文件名
+    filename = photo[photo.rindex('\\') + 1:]
+    # 开启一个流
+    import os
+    path = os.path.join(os.getcwd(), 'media', photo)
+    with open(path, 'rb') as fr:
+        response = HttpResponse(fr.read())
+        response['Content-Type'] = 'image/png'
+        response['Content-Disposition'] = 'attachment;filename='+filename
+    return response
