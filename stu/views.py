@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import os
 
 # Create your views here.
@@ -62,7 +62,7 @@ def download_view(request):
 
 
 def index_view2(request):
-    return HttpResponseRedirect('/student/showallRedirect/')
+    return redirect('/student/showallRedirect/')
 
 
 def showallRedirect_view(request):
