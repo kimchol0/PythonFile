@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.static import serve
 
+from stu import views
 from .settings import DEBUG, MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'student/', include('stu.urls')),
+    re_path(r'^redirect/$', views.index_view2)
 ]
 
 if DEBUG:

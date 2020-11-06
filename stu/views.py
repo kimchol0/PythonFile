@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 import os
 
@@ -57,5 +57,13 @@ def download_view(request):
     with open(path, 'rb') as fr:
         response = HttpResponse(fr.read())
         response['Content-Type'] = 'image/png'
-        response['Content-Disposition'] = 'attachment;filename='+filename
+        response['Content-Disposition'] = 'attachment;filename=' + filename
     return response
+
+
+def index_view2(request):
+    return HttpResponseRedirect('/student/showallRedirect/')
+
+
+def showallRedirect_view(request):
+    return HttpResponse('hello')
