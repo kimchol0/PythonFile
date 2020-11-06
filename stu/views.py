@@ -62,7 +62,10 @@ def download_view(request):
 
 
 def index_view2(request):
-    return redirect('/student/showallRedirect/')
+    response = HttpResponse()
+    response.status_code = 302
+    response.setdefault('location', '/student/showallRedirect/')
+    return response
 
 
 def showallRedirect_view(request):
