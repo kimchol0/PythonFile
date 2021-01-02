@@ -70,3 +70,18 @@ def index_view2(request):
 
 def showallRedirect_view(request):
     return HttpResponse('hello')
+
+def login_view(request):
+    if request.method=='GET':
+        return render(request,'login.html')
+    else:
+        # 获取请求参数
+        uname = request.POST.get('uname', ' ')
+        pwd = request.POST.get('pwd', ' ')
+        # 判断
+        if uname == 'zhangsan' and pwd == '123':
+            return redirect('/student/main/')
+        return redirect('/student/login/')
+
+def main(request):
+    return HttpResponse('欢迎进入主页面')
